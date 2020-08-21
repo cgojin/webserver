@@ -38,5 +38,15 @@ openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
 ./webserver -cert server.crt -key server.key
 ```
 
+### Test webserver
+```sh
+curl https://localhost:8080
+    curl: (60) SSL certificate problem: self signed certificate
+
+# need use the -k (or –insecure) option
+curl -k https://localhost:8080
+    ok!
+```
+
 Note: In Google Chrome if there is an issue validating the certificate the error will show as ```“your connection is not private”```. 
 You can browse [chrome://flags/#allow-insecure-localhost](chrome://flags/#allow-insecure-localhost), and Enable the option "Allow invalid certificates for resources loaded from localhost."
