@@ -1,7 +1,9 @@
 # webserver
+
 Simple static file web server with go.
 
 ## Building
+
 ```sh
 git clone https://github.com/cgojin/webserver
 cd webserver
@@ -9,6 +11,7 @@ go build
 ```
 
 ## Run webserver with ``http``
+
 ```sh
 # Simple running
 ./webserver
@@ -34,11 +37,13 @@ openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
 ```
 
 ### Run webserver with HTTPS/TLS
+
 ```sh
 ./webserver -cert server.crt -key server.key
 ```
 
 ### Test webserver
+
 ```sh
 curl https://localhost:8080
     curl: (60) SSL certificate problem: self signed certificate
@@ -48,5 +53,5 @@ curl -k https://localhost:8080
     ok!
 ```
 
-Note: In Google Chrome if there is an issue validating the certificate the error will show as ```“your connection is not private”```. 
+Note: In Google Chrome if there is an issue validating the certificate the error will show as ```“your connection is not private”```
 You can browse [chrome://flags/#allow-insecure-localhost](chrome://flags/#allow-insecure-localhost), and Enable the option "Allow invalid certificates for resources loaded from localhost."
