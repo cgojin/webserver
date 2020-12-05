@@ -20,9 +20,9 @@ go build
 ./webserver -addr 8000 -dir ./public
 ```
 
-## Run webserver with ``http/tls``
+## Run webserver with ``https``
 
-### Generate private key (.key)
+### Generate certificate
 
 ```sh
 # Key considerations for algorithm "RSA" ≥ 2048-bit
@@ -36,7 +36,7 @@ openssl ecparam -genkey -name secp384r1 -out server.key
 openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
 ```
 
-### Run webserver with HTTPS/TLS
+### Run webserver with certificate
 
 ```sh
 ./webserver -cert server.crt -key server.key

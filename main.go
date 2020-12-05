@@ -20,7 +20,6 @@ func main() {
 	}
 
 	// print url
-	var err error
 	var url string
 	useTLS := len(*certFile) > 0 && len(*keyFile) > 0
 	if useTLS {
@@ -36,6 +35,7 @@ func main() {
 	fmt.Printf("web server: %s", url)
 
 	// start server
+	var err error
 	http.Handle("/", http.FileServer(http.Dir(*dir)))
 	if useTLS {
 		err = http.ListenAndServeTLS(*addr, *certFile, *keyFile, nil)
