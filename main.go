@@ -10,35 +10,35 @@ import (
 func main() {
 	// command params
 	addr := flag.String("addr", ":8080", "server listen address")
-	dir := flag.String("dir", "", "Static file directory")
-	certFile := flag.String("cert", "", "Certificate file")
-	keyFile := flag.String("key", "", "Private key file")
+	dir := flag.String("dir", "", "static file directory")
+	certFile := flag.String("cert", "", "certificate file")
+	keyFile := flag.String("key", "", "private key file")
 	flag.Parse()
 
 	if len(*addr) <= 0 {
-		log.Fatal("No listen address")
+		log.Fatal("no listen address")
 	}
 
 	// print url
 	var err error
-	var prefix string
+	var url string
 	useTLS := len(*certFile) > 0 && len(*keyFile) > 0
 	if useTLS {
-		prefix = "https://"
+		url = "https://"
 	} else {
-		prefix = "http://"
+		url = "http://"
 	}
-	fmt.Printf("Web Server: ")
 	if (*addr)[0] == ':' {
-		fmt.Printf("%s", prefix+"localhost"+*addr)
+		url = url + "localhost" + *addr
 	} else {
-		fmt.Printf("%s\n", prefix+*addr)
+		url = url + *addr
 	}
+	fmt.Printf("web server: %s", url)
 
 	// start server
 	http.Handle("/", http.FileServer(http.Dir(*dir)))
 	if useTLS {
-		err = http.ListenAndServeTLS(":8080", *certFile, *keyFile, nil)
+		err = http.ListenAndServeTLS(*addr, *certFile, *keyFile, nil)
 	} else {
 		err = http.ListenAndServe(*addr, nil)
 	}
