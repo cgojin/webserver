@@ -17,7 +17,7 @@ go build
 ./webserver
 
 # Specify port and directory
-./webserver -addr 8000 -dir ./public
+./webserver -addr 8080 -dir ./public
 ```
 
 ## Run webserver with ``https``
@@ -50,7 +50,7 @@ curl https://localhost:8080
 
 # need use the -k (or –insecure) option
 curl -k https://localhost:8080
-    ok!
+    ok
 ```
 
 Note: In Google Chrome if there is an issue validating the certificate the error will show as ```“your connection is not private”```
