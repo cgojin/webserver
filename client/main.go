@@ -42,6 +42,7 @@ func main() {
 				// curl with -k (or –insecure) option, example: curl -k https://localhost:8080
 				InsecureSkipVerify: *insecure,
 			},
+			Proxy: http.ProxyFromEnvironment,
 		},
 	}
 
